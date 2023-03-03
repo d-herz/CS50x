@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Max number of candidates
+// Max number of candidates defined as a constant
 #define MAX 9
 
 // Candidates have name and vote count
@@ -12,7 +12,7 @@ typedef struct
   int votes;
 } candidate;
 
-// Array of candidates
+// Global array of candidates, each element is a candidate
 candidate candidates[MAX];
 
 // Number of candidates
@@ -65,13 +65,34 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-  // TODO
+  // Check if "name" matches on of the candidates in the array
+  for (int i = 0; i < 9; i++)
+  {
+    if (strcmp(candidates[i].name, name) == 0)
+    {
+      printf("Found\n");
+      candidates[i].votes++;
+      return true;
+    }
+  }
   return false;
 }
 
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-  // TODO
-  return;
+  string winner[candidate_count];
+  int maxVoteTrack = 0;
+
+  for (int i = 0; i < 9; i++)
+  {
+    if (candidates[i].votes != 0 && candidates[i].votes > maxVoteTrack)
+    {
+      maxVoteTrack = candidates[i].votes;
+      winner[i] = candidates[i].name;
+    }
+  }
+
+  printf("Array: %s\n", winner[0]);
+  printf("Winner: %i\n", maxVoteTrack);
 }
