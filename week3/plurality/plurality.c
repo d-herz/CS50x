@@ -83,6 +83,7 @@ bool vote(string name)
 }
 
 // Print the winner (or winners) of the election
+// Need to fix this function
 void print_winner(void)
 {
   string winner[candidate_count];
