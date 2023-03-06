@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-// Max number of candidates defined as a constant
+// Max number of candidates
 #define MAX 9
 
 // Candidates have name and vote count
@@ -12,7 +12,7 @@ typedef struct
   int votes;
 } candidate;
 
-// Global array of candidates, each element is a candidate
+// Array of candidates global (can be accessed anywhere)
 candidate candidates[MAX];
 
 // Number of candidates
@@ -65,39 +65,38 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-  // Check if "name" matches on of the candidates in the array
-  for (int i = 0; i < 9; i++)
+  // TODO
+  // Check if "name" matches one of the candidates in the array
+  for (int i = 0; i < candidate_count; i++)
   {
     if (strcmp(candidates[i].name, name) == 0)
     {
-      printf("Found\n");
+      // printf("Found: %s\n", candidates[i].name);
       candidates[i].votes++;
       return true;
-    }
-    else
-    {
-      return false;
     }
   }
   return false;
 }
 
 // Print the winner (or winners) of the election
-// Need to fix this function
 void print_winner(void)
 {
-  string winner[candidate_count];
-  int maxVoteTrack = 0;
-
-  for (int i = 0; i < 9; i++)
+  // TODO
+  int mostVotes = 0;
+  for (int i = 0; i < candidate_count; i++)
   {
-    if (candidates[i].votes != 0 && candidates[i].votes > maxVoteTrack)
+    if (candidates[i].votes > mostVotes)
     {
-      maxVoteTrack = candidates[i].votes;
-      winner[i] = candidates[i].name;
+      mostVotes = candidates[i].votes;
+      // printf("%s\n", candidates[i].name);
     }
   }
-
-  printf("Array: %s\n", winner[0]);
-  printf("Winner: %i\n", maxVoteTrack);
+  for (int j = 0; j < candidate_count; j++)
+  {
+    if (mostVotes == candidates[j].votes)
+    {
+      printf("%s\n", candidates[j].name);
+    }
+  }
 }
