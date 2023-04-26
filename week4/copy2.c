@@ -9,11 +9,21 @@ int main(void)
   char *s = get_string("s: ");
 
   // t is now a pointer to some random chunk of free space;
+  // by using the strlen of s PLUS 1, we will have room for the \0 NUL character
   char *t = malloc(strlen(s) + 1);
 
-  for (int i = 0; i < strlen(s) + 1; i++)
+  // using a for loop, notice the 2 variables in the initialization
+  // for (int i = 0, n = strlen(s) + 1; i < n; i++)
+  // {
+  //   t[i] = s[i];
+  // }
+
+  // using strcpy() from the string.h library
+  strcpy(t, s);
+
+  if (strlen(t) > 0)
   {
-    t[i] = s[i];
+    t[0] = toupper(t[0]);
   }
 
   printf("s: %s\n", s);
