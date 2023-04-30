@@ -141,14 +141,21 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         // First column
         if (j = 0)
         {
+          float avg_Red = (image_copy[i][j].rgbtRed + image_copy[i][j + 1].rgbtRed + image_copy[i - 1][j].rgbtRed + image_copy[i - 1][j + 1].rgbtRed + image_copy[i + 1][j].rgbtRed + image_copy[i + 1][j + 1].rgbtRed) / 6.0;
+          float avg_Green = (image_copy[i][j].rgbtGreen + image_copy[i][j + 1].rgbtGreen + image_copy[i - 1][j].rgbtGreen + image_copy[i - 1][j + 1].rgbtGreen + image_copy[i + 1][j].rgbtGreen + image_copy[i + 1][j + 1].rgbtGreen) / 6.0;
+          float avg_Blue = (image_copy[i][j].rgbtBlue + image_copy[i][j + 1].rgbtBlue + image_copy[i - 1][j].rgbtBlue + image_copy[i - 1][j + 1].rgbtBlue + image_copy[i + 1][j].rgbtBlue + image_copy[i + 1][j + 1].rgbtBlue) / 6.0;
         }
-      }
+        // 2nd column through 2nd to last
+        if (j > 0 && j < width - 1)
+        {
+          float avg_red = ;
+        }
 
-      // Same row
-      float avg_Red = (image_copy[i][j].rgbtRed + image_copy[i][j + 1].rgbtRed + image_copy[i][j - 1].rgbtRed) / 3.0;
-      float avg_Green = (image[i][j].rgbtGreen + image[i][j + 1].rgbtGreen + image[i][j - 1].rgbtGreen) / 3.0;
-      float avg_Blue = (image[i][j].rgbtBlue + image[i][j + 1].rgbtBlue + image[i][j - 1].rgbtBlue) / 3.0;
+        // Same row
+        float avg_Red = (image_copy[i][j].rgbtRed + image_copy[i][j + 1].rgbtRed + image_copy[i][j - 1].rgbtRed) / 3.0;
+        float avg_Green = (image[i][j].rgbtGreen + image[i][j + 1].rgbtGreen + image[i][j - 1].rgbtGreen) / 3.0;
+        float avg_Blue = (image[i][j].rgbtBlue + image[i][j + 1].rgbtBlue + image[i][j - 1].rgbtBlue) / 3.0;
+      }
     }
+    return;
   }
-  return;
-}
