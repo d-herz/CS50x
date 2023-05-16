@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// works for first 25 images
 int main(int argc, char *argv[])
 {
   if (argc <= 1)
@@ -10,6 +9,7 @@ int main(int argc, char *argv[])
     return 1;
   }
 
+  // Open memory card
   FILE *input_file = fopen(argv[1], "r");
   if (input_file == NULL)
   {
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
       }
 
       sprintf(file_name, "%03d%s", image_num, img_ext);
-      printf("Filename: %s\n", file_name);
+      printf("Filename: %s created\n", file_name);
 
       output = fopen(file_name, "w");
       if (output == NULL)
@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
       }
 
       fwrite(buffer, 1, 512, output);
+      printf("Filename: %s written too\n", file_name);
       image_num++;
 
       // Continue reading and writing the subsequent blocks until a new JPEG header is found
@@ -64,10 +65,9 @@ int main(int argc, char *argv[])
           // Found a new JPEG header, break the inner loop
           break;
         }
-
         fwrite(buffer, 1, 512, output);
       }
-        }
+    }
   }
 
   if (output != NULL)
