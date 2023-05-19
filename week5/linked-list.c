@@ -43,4 +43,13 @@ int main(int argc, char *argv[])
     // follow the arrow and grab the "next" pointer each time
     ptr = ptr->next;
   }
+
+  // redeclaring ptr so we can loop through and "free" our malloc'd memory
+  ptr = list;
+  while (ptr != NULL)
+  {
+    node *next = ptr->next;
+    free(ptr);
+    ptr = next;
+  }
 }
