@@ -7,7 +7,8 @@ typedef struct node
 {
   int number;
   struct node *next;
-} node;
+} 
+node;
 
 int main(int argc, char *argv[])
 {
@@ -20,6 +21,7 @@ int main(int argc, char *argv[])
     // atoi() for converting ascii to integer
     int number = atoi(argv[i]);
 
+    // Allocate node for number
     node *n = malloc(sizeof(node));
     if (n == NULL)
     {
@@ -28,14 +30,15 @@ int main(int argc, char *argv[])
     n->number = number;
     n->next = NULL;
 
+    // Prepend node to list
     n->next = list;
     list = n;
   }
 
+  // Print numbers 
   // temporary variable for iterating over the list in a while loop
-  // it starts off pointing at the first node in the list
+  // It starts off pointing at the first node in the list
   node *ptr = list;
-
   while (ptr != NULL)
   {
     printf("%i\n", ptr->number);
@@ -44,7 +47,7 @@ int main(int argc, char *argv[])
     ptr = ptr->next;
   }
 
-  // redeclaring ptr so we can loop through and "free" our malloc'd memory
+  // Redeclaring ptr so we can loop through and "free" our malloc'd memory
   ptr = list;
   while (ptr != NULL)
   {
