@@ -1,15 +1,13 @@
-#include <stio.h>
-#include <stlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <cs50.h>
-
 
 typedef struct node
 {
   string phrase;
   struct node *next;
-};
-node;
+} node;
 
 #define LIST_SIZE 2
 
@@ -26,6 +24,16 @@ int main(void)
     string phrase = get_string("Enter a new Phrase:");
 
     // TODO Add phrase to new node in list
+    node *n = malloc(sizeof(node));
+    if (n == NULL)
+    {
+      printf("Couldn't alllocate memory for node\n");
+      return 1;
+    }
+    n->phrase = phrase;
+    n->next = list;
+
+    list = n;
 
     // Visualize list after adding a node.
     visualize(list);
@@ -37,15 +45,21 @@ int main(void)
 void unload(node *list)
 {
   // TODO: free all allocated nodes
+  while (list != NULL)
+  {
+    node *ptr = list->next;
+    free(list);
+    list = ptr;
+  }
 }
 
-void visualize(nodw *list)
+void visualize(node *list)
 {
   printf("\n+-- List Visualizer --+ \n\n");
   while (list != NULL)
   {
     printf("Location %p\n", list);
-    printf("Phrase: \"%s\"\n", list->prhase);
+    printf("Phrase: \"%s\"\n", list->phrase);
     printf("Next: %p\n\n", list->next);
     list = list->next;
   }
