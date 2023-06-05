@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <cs50.h>
+#include <ctype.h>
 
 typedef struct node
 {
@@ -25,5 +26,5 @@ int main(void)
 
 int hash(string phrase)
 {
-  return 0;
+  return toupper(phrase[0]) - 'A';
 }
